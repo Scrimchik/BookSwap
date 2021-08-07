@@ -1,0 +1,15 @@
+﻿@model IEnumerable<BookGenre>
+
+    <div class="genre-list">
+        @foreach(var g in Model) {
+        <div class="genre">
+            <div class="genre__img"><img src="~/img/Genres/@g.PhotoWay" alt=""></div>
+            <div class="genre__name">@g.Name</div>
+            <div class="genre-links">
+                <div class="genre__edit"><a asp-action="EditGenre" asp-controller="Genre" asp-route-genreId="@g.Id">Редактировать</a></div>
+                <div class="genre__edit"><a asp-action="DeleteGenre" asp-controller="Genre" asp-route-genreId="@g.Id">Удалить</a></div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="genre-add"><a asp-action="AddGenre" asp-controller="Genre">Добавить новый жанр</a></div>

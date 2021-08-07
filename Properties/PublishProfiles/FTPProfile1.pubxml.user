@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <_PublishTargetUrl>ftp://155.254.244.34/www.BookSwap.somee.com</_PublishTargetUrl>
+    <History>False|2021-08-06T19:44:59.8892537Z;True|2021-08-06T20:45:57.0251074+03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>01/03/2021 04:22:12</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="BookSwap.deps.json">
+      <publishTime>08/06/2021 22:09:28</publishTime>
+    </File>
+    <File Include="BookSwap.dll">
+      <publishTime>08/06/2021 22:03:45</publishTime>
+    </File>
+    <File Include="BookSwap.exe">
+      <publishTime>06/08/2021 20:03:20</publishTime>
+    </File>
+    <File Include="BookSwap.pdb">
+      <publishTime>08/06/2021 22:03:45</publishTime>
+    </File>
+    <File Include="BookSwap.runtimeconfig.json">
+      <publishTime>08/06/2021 20:01:49</publishTime>
+    </File>
+    <File Include="BookSwap.Views.dll">
+      <publishTime>08/06/2021 22:03:48</publishTime>
+    </File>
+    <File Include="BookSwap.Views.pdb">
+      <publishTime>06/08/2021 20:03:21</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Cryptography.Internal.dll">
+      <publishTime>12/01/2020 23:20:04</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Cryptography.KeyDerivation.dll">
+      <publishTime>12/01/2020 23:20:06</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll">
+      <publishTime>12/01/2020 23:21:10</publishTime>
+    </File>
+    <File Include="Microsoft.Data.SqlClient.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
+      <publishTime>11/26/2020 05:31:18</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.dll">
+      <publishTime>11/26/2020 05:31:28</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.Relational.dll">
+      <publishTime>11/26/2020 05:31:36</publishTime>
+    </File>
+    <File Include="Microsoft.EntityFrameworkCore.SqlServer.dll">
+      <publishTime>11/26/2020 05:31:42</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Caching.Abstractions.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Caching.Memory.dll">
+      <publishTime>10/19/2020 18:48:36</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Configuration.Abstractions.dll">
+      <publishTime>10/19/2020 18:48:28</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.DependencyInjection.dll">
+      <publishTime>11/26/2020 01:59:08</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Identity.Core.dll">
+      <publishTime>12/01/2020 23:20:26</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Identity.Stores.dll">
+      <publishTime>12/01/2020 23:20:36</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Logging.Abstractions.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Logging.dll">
+      <publishTime>10/19/2020 18:53:18</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Options.dll">
+      <publishTime>10/19/2020 18:48:30</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.Primitives.dll">
+      <publishTime>10/19/2020 18:48:36</publishTime>
+    </File>
+    <File Include="Microsoft.Identity.Client.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.JsonWebTokens.dll">
+      <publishTime>10/18/2019 23:39:24</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Logging.dll">
+      <publishTime>10/18/2019 23:40:20</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Protocols.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
+      <publishTime>10/18/2019 23:48:48</publishTime>
+    </File>
+    <File Include="Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>10/18/2019 23:43:40</publishTime>
+    </File>
+    <File Include="Microsoft.Win32.SystemEvents.dll">
+      <publishTime>10/19/2020 18:40:26</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll">
+      <publishTime>08/25/2020 23:25:12</publishTime>
+    </File>
+    <File Include="runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>08/25/2020 20:34:56</publishTime>
+    </File>
+    <File Include="runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.pdb">
+      <publishTime>08/25/2020 20:31:56</publishTime>
+    </File>
+    <File Include="runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>08/25/2020 20:35:06</publishTime>
+    </File>
+    <File Include="runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.pdb">
+      <publishTime>08/25/2020 20:31:56</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>08/25/2020 20:34:56</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.pdb">
+      <publishTime>08/25/2020 20:31:56</publishTime>
+    </File>
+    <File Include="runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll">
+      <publishTime>08/25/2020 20:34:56</publishTime>
+    </File>
+    <File Include="runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.pdb">
+      <publishTime>08/25/2020 20:31:56</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll">
+      <publishTime>10/19/2020 18:52:12</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll">
+      <publishTime>02/16/2021 22:00:24</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll">
+      <publishTime>08/25/2020 23:24:48</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll">
+      <publishTime>11/15/2019 08:53:44</publishTime>
+    </File>
+    <File Include="runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>11/15/2019 08:53:46</publishTime>
+    </File>
+    <File Include="System.Collections.Immutable.dll">
+      <publishTime>10/19/2020 18:37:40</publishTime>
+    </File>
+    <File Include="System.ComponentModel.Annotations.dll">
+      <publishTime>10/19/2020 18:37:54</publishTime>
+    </File>
+    <File Include="System.Configuration.ConfigurationManager.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="System.Diagnostics.DiagnosticSource.dll">
+      <publishTime>10/19/2020 18:38:16</publishTime>
+    </File>
+    <File Include="System.Drawing.Common.dll">
+      <publishTime>02/16/2021 22:00:12</publishTime>
+    </File>
+    <File Include="System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="System.Runtime.Caching.dll">
+      <publishTime>11/15/2019 08:37:36</publishTime>
+    </File>
+    <File Include="System.Security.Cryptography.ProtectedData.dll">
+      <publishTime>11/15/2019 08:37:42</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>06/08/2021 20:04:23</publishTime>
+    </File>
+    <File Include="wwwroot/BookFiles/skazki/с# 8.pdf">
+      <publishTime>08/04/2021 21:07:57</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.css">
+      <publishTime>08/04/2021 21:01:22</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.min.css">
+      <publishTime>08/04/2021 21:01:23</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/rostov.ttf">
+      <publishTime>02/23/2021 17:50:36</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/Ubundu.ttf">
+      <publishTime>02/23/2021 17:05:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/VinitsaSans.ttf">
+      <publishTime>02/23/2021 17:05:00</publishTime>
+    </File>
+    <File Include="wwwroot/img/2a83f87-knigi-1542.jpg">
+      <publishTime>12/26/2020 12:39:56</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/Boeveki/Без названия %282%29.jpg">
+      <publishTime>01/10/2021 07:34:56</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/Computers/382352_62113360.jpg">
+      <publishTime>01/10/2021 07:35:26</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/default-img.jpg">
+      <publishTime>07/25/2021 00:59:38</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/Detectivy/unnamed.jpg">
+      <publishTime>01/10/2021 07:35:54</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/skazki/АХах- - -ахах.jpg">
+      <publishTime>08/04/2021 21:09:33</publishTime>
+    </File>
+    <File Include="wwwroot/img/BooksPhotos/skazki/Привет, я Николя!!!.jpg">
+      <publishTime>08/03/2021 07:14:28</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/46615 %282%29.jpg">
+      <publishTime>07/24/2021 16:43:08</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/595be70db0ac7395a7826646936dce50.jpg">
+      <publishTime>12/27/2020 11:19:54</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/boocover.jpg">
+      <publishTime>07/25/2021 19:47:23</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/computers.jpg">
+      <publishTime>08/04/2021 20:52:38</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/default-img.jpg">
+      <publishTime>07/25/2021 00:59:38</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/priclucheniya.jpg">
+      <publishTime>08/04/2021 20:51:00</publishTime>
+    </File>
+    <File Include="wwwroot/img/Genres/suka.jpg">
+      <publishTime>08/04/2021 20:53:31</publishTime>
+    </File>
+    <File Include="wwwroot/img/header/free-icon-search-2657962.svg">
+      <publishTime>02/24/2021 12:02:50</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/1600107789_cov350m.jpg">
+      <publishTime>07/29/2021 18:05:44</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/cover.jpg">
+      <publishTime>07/30/2021 17:13:48</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/default-user-image.jpg">
+      <publishTime>07/29/2021 17:49:17</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/i544402.jpg">
+      <publishTime>07/29/2021 18:06:12</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/unnamed.png">
+      <publishTime>08/01/2021 18:42:05</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/WIN_20191214_18_00_07_Pro.jpg">
+      <publishTime>07/29/2021 18:42:50</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Big/WIN_20191214_18_01_14_Pro %282%29.jpg">
+      <publishTime>08/01/2021 19:28:36</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/1600107789_cov350m.jpg">
+      <publishTime>07/29/2021 18:04:43</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/cover.jpg">
+      <publishTime>07/30/2021 17:13:48</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/default-user-image.jpg">
+      <publishTime>07/29/2021 17:51:46</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/i544402.jpg">
+      <publishTime>07/29/2021 18:06:12</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/unnamed.png">
+      <publishTime>08/01/2021 18:42:05</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/WIN_20191214_18_00_07_Pro.jpg">
+      <publishTime>07/29/2021 18:42:50</publishTime>
+    </File>
+    <File Include="wwwroot/img/UsersPhotos/Small/WIN_20191214_18_01_14_Pro %282%29.jpg">
+      <publishTime>08/01/2021 19:28:36</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/js/script.js">
+      <publishTime>07/29/2021 17:22:23</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

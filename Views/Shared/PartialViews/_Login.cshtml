@@ -1,0 +1,19 @@
+﻿@model LoginViewModel
+
+<div class="login" style="display: none;">
+    <form asp-action="Login" asp-controller="Account">
+        <div class="login__user-name input">
+            <label for="login">Логин:</label>
+            <input type="text" asp-for="Name" id="login"><br>
+            <span class="validation" asp-validation-for="Name"></span>
+        </div>
+        <div class="login__password input">
+            <label for="password">Пароль:</label>
+            <input type="password" asp-for="Password" id="password"><br>
+            <span class="validation" asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <input type="submit" value="Войти" class="login__submit btn">
+        </div>
+    </form>
+</div>

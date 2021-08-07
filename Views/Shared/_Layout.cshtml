@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximu-scale=1.0, user-scalable=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/style.min.css">
+    <script defer src="~/js/jquery.min.js"></script>
+    <script defer src="~/js/script.js"></script>
+    <script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+    <script defer src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <header class="header">
+                <div class="header__name"><a class="header__name" asp-action="GenreList" asp-controller="Genre">BookSwap</a></div>
+                <div class="header__search">
+                    <form action="#" class="search">
+                        <input type="text" placeholder="Найти книгу..." class="search__input">
+                        <input type="image" value="" src="~/img/header/free-icon-search-2657962.svg" class="search__submit">
+                    </form>
+                </div>
+                @await Component.InvokeAsync("UserOnHeader") 
+                @await Html.PartialAsync("PartialViews/_Login", new LoginViewModel())
+            </header>
+            <div class="content">
+                <div class="main-content">
+                    @RenderBody()
+                </div>
+                <div class="right-content">
+                    <div class="best-users">
+                        <div class="best-users__title">Топ пользователей:</div>
+                        @await Component.InvokeAsync("BestUsers")
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="AddBook" asp-controller="Book" class="right-content__upload">
+                            <div class="right-content__upload">
+                                Загрузить книгу
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="right-content__upload non-auth">
+                            Загрузить книгу
+                        </div>
+                        <span class="validation non-auth-alert" style="display:none;">Только зарегестрированные пользоваетели могут загрузить книгу</span>
+                    }
+                </div>
+            </div>
+            <div class="hidden-content">
+                @await Html.PartialAsync("PartialViews/_Registration", new RegistrationViewModel())
+            </div>
+        </div>
+    </div>
+</body>
+</html>

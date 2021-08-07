@@ -1,0 +1,54 @@
+﻿@model BookViewModel
+@{
+    ViewBag.Title = Model.Book.Name;
+    var returnUrl = Context.Request.Path.Value;
+}
+
+<div class="book-block">
+    @if (Model.Book.UserWhoUploadId == Model.CurrentUserId || User.IsInRole("admin"))
+    {
+    <div class="book-block__admin-link">
+        <a asp-action="EditBook" asp-controller="Book" asp-route-bookId="@Model.Book.Id" class="book-block__admin-link">Редактировать книгу</a>
+        <a asp-action="DeleteBook" asp-controller="Book" asp-route-bookId="@Model.Book.Id" class="book-block__admin-link">Удалить книгу</a>
+    </div>
+    }
+    <div class="book-info">
+        <img class="book-info__img" src="@Model.Book.PhotoWay" align="top" alt="">
+        <div class="book-info__info">
+            <div class="book-info__name">@Model.Book.Name</div>
+            <div class="book-info__description">@Model.Book.Description</div>
+            <div class="book-info__author">Автор: @Model.Book.Author</div>
+        </div>
+    </div>
+    <div class="book-userinfo">
+        <div class="book-userinfo__downloads">Скачали: @Model.Book.DownloadCount раза</div>
+        <div class="book-userinfo__upload">Добавил: <a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@Model.Book.User.UserName" class="book-userinfo__upload">@Model.Book.User.UserName</a></div>
+        <a asp-action="DownloadBook" asp-controller="Book" asp-route-bookId="@Model.Book.Id"><button asp-a class="book-userinfo__download btn">Скачать</button></a>
+    </div>
+</div>
+<div class="comment-block">
+    <div class="comment-title">Коментарии</div>
+    <form method="post" asp-action="AddComment" asp-controller="Comment" class="comment-write">
+        <input type="hidden" name="bookId" value="@Model.Book.Id" />
+        <input type="hidden" name="returnUrl" value="@returnUrl" />
+        <textarea placeholder="Написать комментарий" name="commentText"></textarea>
+        <div class="comment-write__submit"><input type="submit" class="comment-write__submit btn"></div>
+    </form>
+    <div class="comments">
+        @foreach(var c in Model.Book.Comments.OrderByDescending(t => t.Id)) {
+        <div class="comment">
+            <div class="comment__item">
+                <a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@c.User.UserName"><div class="comment__userImg"><img src="~/img/UsersPhotos/Small/@c.User.PhotoWay"></div></a>
+                <div class="comment__right-section">
+                    <a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@c.User.UserName"><div class="comment__userName">@c.User.UserName</div></a>
+                    <div class="comment__data">@c.DateAdded</div>
+                    <div class="comment__text">@c.Text</div>
+                    @if (c.UserId == Model.CurrentUserId || User.IsInRole("admin")) {
+                    <div class="comment__delete"><a asp-action="DeleteComment" asp-controller="Comment" asp-route-commentId="@c.Id" asp-route-returnUrl="@returnUrl" class="comment__delete">Удалить</a></div>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

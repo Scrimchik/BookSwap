@@ -1,0 +1,17 @@
+﻿@model string
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="header__profile">
+        <div class="header__user-name"><a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@User.Identity.Name">@User.Identity.Name</a></div>
+        <div class="header__user-img"><a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@User.Identity.Name"><img src="~/img/UsersPhotos/Small/@Model" alt=""></a></div>
+        <div class="header__user-logout"><a asp-action="Logout" asp-controller="Account">Выйти</a></div>
+    </div>
+}
+else
+{
+    <div class="header__auth">
+        <span id="login_open">Вход</span>
+        <span id="registration_open">Регистрация</span>
+    </div>
+}

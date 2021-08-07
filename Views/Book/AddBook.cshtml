@@ -1,0 +1,44 @@
+﻿@model AddBookViewModel
+@{
+    ViewBag.Title = "Добавление книги";
+}
+
+<div class="edit-book">
+    <form asp-action="AddBook" asp-controller="Book" enctype="multipart/form-data">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div class="edit-book-for-flex">
+            <div class="edit-book__img"><img src="~/img/BooksPhotos/default-img.jpg" id="image" alt=""></div>
+            <div class="edit-book-right-section">
+                <div class="edit-book__name input">
+                    <input type="text" asp-for="Book.Name" placeholder="Название:"><br>
+                    <span class="validation" asp-validation-for="Book.Name"></span>
+                </div>
+                <div class="edit-book__description">
+                    <textarea asp-for="Book.Description" placeholder="Описание:"></textarea><br>
+                    <span class="validation" asp-validation-for="Book.Description"></span>
+                </div>
+                <div class="edit-book__author input">
+                    Автор: <input asp-for="Book.Author" type="text"><br>
+                    <span class="validation" asp-validation-for="Book.Author"></span>
+                </div>
+            </div>
+        </div>
+        <div class="edit-book__input-img">
+            <label for="input-img">Изображение:</label><br><input type="file" name="image" id="input-img">
+        </div>
+        <div class="edit-book__input-book">
+            <label for="input-book">Файл книги:</label><br><input type="file" name="bookFile" id="input-book">
+        </div>
+        <div class="edit-book__input-genre">
+            <label for="input-genre">Жанр:</label><br>
+            <select id="input genre" name="genreName">
+                @foreach (var g in Model.BookGenres)
+                {
+                    <option>@g</option>
+                }
+            </select>
+            <div class="edit-book__save-btn"><input type="submit" class="btn" value="Сохранить"></div>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,24 @@
+﻿@model RegistrationViewModel
+
+<div class="registration noshow" id="registration" style="display: none;">
+    <form asp-action="Registration" asp-controller="Account">
+        <div class="registration__user-name input">
+            <label for="login">Имя пользователя:</label>
+            <input type="text" asp-for="Name" id="login"><br>
+            <span class="validation validation-r" asp-validation-for="Name"></span>
+        </div>
+        <div class="registration__password input">
+            <label for="password" >Пароль:</label>
+            <input type="password" asp-for="Password" /><br>
+            <span class="validation validation-r" asp-validation-for="Password"></span>
+        </div>
+        <div class="registration__repear-password input">
+            <label for="check-password">Повторите пароль:</label>
+            <input type="password" asp-for="ConfirmPassword"><br>
+            <span class="validation validation-r" asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <div class="registration__submit">
+            <input type="submit" value="Зарегестрироваться" class="btn">
+        </div>
+    </form>
+</div>

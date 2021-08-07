@@ -1,0 +1,15 @@
+﻿@model BookGenre
+
+    <form asp-action="EditGenre" asp-controller="Genre" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <div class="edit-book-for-flex">
+            <div class="edit-book__img"><img src="~/img/Genres/@Model.PhotoWay" id="image" alt=""></div>
+            <div class="edit-book-right-section">
+                <div class="edit-book__name input"><input asp-for="Name" type="text" placeholder="Название:" required></div>
+            </div>
+        </div>
+        <div class="edit-book__input-img">
+            <label for="input-img">Изображение:</label><br><input type="file" name="image" id="input-img">
+            <div class="edit-book__save-btn"><input type="submit" class="btn" value="Сохранить"></div>
+        </div>
+    </form>

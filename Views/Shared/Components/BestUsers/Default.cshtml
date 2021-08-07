@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BookSwap.Models.Users.User>
+
+<div class="best-users__content">
+    @foreach(var u in Model) {
+    <div class="best-user">
+        <a asp-action="UserProfile" asp-controller="Account" asp-route-userName="@u.UserName" class="best-user">
+            <div class="best-user__img"><img src="~/img/UsersPhotos/Small/@u.PhotoWay" alt=""></div>
+            <div class="best-user-info">
+                <div class="best-user__name">@u.UserName</div>
+                <div class="best-user-info__download-upload">
+                    <div class="best-user__upload-sum">Загружено: @u.UploadBooks книг</div>
+                    <div class="best-user__download-sum">Скачано: @u.DownloadBooks книг</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿@model BookSwap.Models.Users.User
+@{ 
+    ViewBag.Title = Model.UserName;
+}
+
+<div class="user-block">
+    <div class="user-block-flex">
+        <div class="user-block__img"><img src="~/img/UsersPhotos/Big/@Model.PhotoWay" id="image" alt=""></div>
+        <div class="user-block-info">
+            <div class="user-block__name">@Model.UserName</div>
+            <div class="user-block__info">
+                <div class="user-block__upload">Загружено: @Model.UploadBooks книг</div>
+                <div class="user-block__download">Скачано: @Model.DownloadBooks книг</div>
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.CanChangePhoto)
+    {
+    <form asp-action="ChangeImage" asp-controller="Account" enctype="multipart/form-data" class="user-block__change-photo">
+        <label for="change-image">Поменять изображение:</label><br>
+        <input type="file" id="change-image" name="image" class="user-block__input"><br>
+        <input type="submit" class="btn" value="Сохранить">
+    </form>
+    }
+</div>

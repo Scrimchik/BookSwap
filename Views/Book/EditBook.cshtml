@@ -1,0 +1,30 @@
+﻿@model Book
+
+<div class="edit-book">
+    <form asp-action="EditBook" asp-controller="Book" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="UserWhoUploadId" />
+        <div class="edit-book-for-flex">
+            <div class="edit-book__img"><img id="image" src="@Model.PhotoWay" alt=""></div>
+            <div class="edit-book-right-section">
+                <div class="edit-book__name input">
+                    <input type="text" placeholder="Название:" asp-for="Name"><br>
+                    <span class="validation" asp-validation-for="Name"></span>
+                </div>
+                <div class="edit-book__description">
+                    <textarea placeholder="Описание:" asp-for="Description"></textarea>
+                    <span class="validation" asp-validation-for="Description"></span>
+                </div>
+                <div class="edit-book__author input">
+                    Автор: <input type="text" asp-for="Author">
+                    <span class="validation" asp-validation-for="Author"></span>
+                </div>
+            </div>
+        </div>
+        <div class="edit-book__input-img">
+            <label for="input-img">Изображение:</label><br><input type="file" name="bookImage" id="input-img">
+            <div class="edit-book__save-btn"><input type="submit" class="btn" value="Сохранить"></div>
+        </div>
+
+    </form>
+</div>

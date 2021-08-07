@@ -1,0 +1,15 @@
+﻿@model BookGenre
+
+    <form asp-action="AddGenre" asp-controller="Genre" enctype="multipart/form-data">
+        <div class="edit-book-for-flex">
+            <div class="edit-book__img"><img src="~/img/Genres/default-img.jpg" id="image" alt=""></div>
+            <div class="edit-book-right-section">
+                <div class="edit-book__name input"><input type="text" asp-for="Name" placeholder="Название:" required></div>
+                <div class="edit-book__name edit-book__name-latin input"><input asp-for="LatinName" type="text" placeholder="Название на латинице:" required></div>
+            </div>
+        </div>
+        <div class="edit-book__input-img">
+            <label for="input-img">Изображение:</label><br><input type="file" name="image" id="input-img">
+            <div class="edit-book__save-btn"><input type="submit" class="btn" value="Сохранить"></div>
+        </div>
+    </form>

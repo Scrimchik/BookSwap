@@ -1,0 +1,30 @@
+﻿@model GenreListViewModel
+
+@if (User.IsInRole("admin"))
+{
+<div class="admin-panel-links"><a asp-action="GenreAdmin" asp-controller="Genre" class="admin-panel-links__link">Редактирование жанров</a></div>
+}
+<div class="genre-name">Книги по жанрам</div>
+<div class="book-list">
+    @foreach(var g in Model.BookGenres) {
+    <div class="book-list-item">
+        <a asp-action="BookList" asp-controller="Book" asp-route-genreName="@g.LatinName">
+            <div class="book-list-item__img"><img src="~/img/Genres/@g.PhotoWay" alt=""></div>
+            <div class="book-list-item__name">@g.Name</div>
+        </a>
+    </div>
+    }
+</div>
+<div class="page-block">
+    @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+    {
+        if (i == Model.PageInfo.CurrentPage)
+        {
+            <a asp-action="GenreList" asp-controller="Genre" asp-route-page="@i"><div class="page-block__item page-block__item_selected">@i</div></a>
+        }
+        else
+        {
+            <a asp-action="GenreList" asp-controller="Genre" asp-route-page="@i"><div class="page-block__item">@i</div></a>
+        }
+    }
+</div>
