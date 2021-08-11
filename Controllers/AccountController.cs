@@ -21,13 +21,13 @@ namespace BookSwap.Controllers
         private IWebHostEnvironment webHostEnvironment;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, 
-            ApplicationContext context, IWebHostEnvironment webHostEnvironment, RoleManager<IdentityRole> roleManager)
+            IWebHostEnvironment webHostEnvironment, ApplicationContext db, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            db = context;
             this.webHostEnvironment = webHostEnvironment;
             this.roleManager = roleManager;
+            this.db = db;
         }
 
         public async Task<IActionResult> Registration(RegistrationViewModel model)
@@ -52,7 +52,7 @@ namespace BookSwap.Controllers
 
         public async Task<IActionResult> CanRegistration(string name)
         {
-            if (await db.Users.AnyAsync(t => t.UserName == name))
+            if (await _userManager.Users.AnyAsync(t => t.UserName == name))
                 return Json(false);
             return Json(true);
         }
@@ -61,7 +61,6 @@ namespace BookSwap.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, true, false);
 
                 if (result.Succeeded)
@@ -104,13 +103,6 @@ namespace BookSwap.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("UserProfile", routeValues: new { userName = user.UserName });
 
-        }
-        [Route("/asdasd/asdasd")]
-        public async Task<IActionResult> MakeAdmin()
-        {
-            await roleManager.CreateAsync(new IdentityRole { Name = "admin" });
-            await _userManager.AddToRoleAsync(await _userManager.GetUserAsync(User), "admin");
-            return RedirectToAction("GenreList", "Genre");
         }
 
         private async Task SaveImage(IFormFile image)

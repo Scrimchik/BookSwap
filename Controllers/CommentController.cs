@@ -15,16 +15,15 @@ namespace BookSwap.Controllers
     public class CommentController : Controller
     {
         private UserManager<User> userManager;
-        private ApplicationContext db;
         private ICommentRepository commentRepository;
 
-        public CommentController(UserManager<User> userManager, ApplicationContext db, ICommentRepository commentRepository)
+        public CommentController(UserManager<User> userManager, ICommentRepository commentRepository)
         {
             this.userManager = userManager;
-            this.db = db;
             this.commentRepository = commentRepository;
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddComment(string commentText, int bookId, string returnUrl)
         {
             Comment comment = new Comment
@@ -34,19 +33,16 @@ namespace BookSwap.Controllers
                 UserId = userManager.GetUserId(User),
                 DateAdded = DateTime.Now.ToString("M") + " в " + DateTime.Now.ToString("t")
             };
-            await db.Comments.AddAsync(comment);
-            await db.SaveChangesAsync();
+            await commentRepository.AddCommentAsync(comment);
             return Redirect(returnUrl);
         }
 
         public async Task<IActionResult> DeleteComment(int commentId, string returnUrl)
         {
             string commentUserId = await commentRepository.Comments.Where(t => t.Id == commentId).Select(t => t.UserId).FirstOrDefaultAsync();
-            if(commentUserId == userManager.GetUserId(User))
-            {
-                db.Comments.Remove(new Comment { Id = commentId });
-                await db.SaveChangesAsync();
-            }
+            if (commentUserId == userManager.GetUserId(User))
+                await commentRepository.DeleteCommentAsync(new Comment { Id = commentId });
+
             return Redirect(returnUrl);
         }
     }

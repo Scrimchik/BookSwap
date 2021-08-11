@@ -31,8 +31,8 @@ namespace BookSwap.Controllers
         {
             this.bookRepository = bookRepository;
             this.genreRepository = genreRepository;
-            this.webHostEnvironment = webHostEnvironment;
             this.db = db;
+            this.webHostEnvironment = webHostEnvironment;
             this.userManager = userManager;
         }
 
@@ -40,7 +40,8 @@ namespace BookSwap.Controllers
         {
             BookListViewModel model = new BookListViewModel
             {
-                Books = await bookRepository.Books.Where(t => t.BooksGenre.LatinName == genreName).OrderByDescending(t => t.Id).Skip(bookPerPage * (page - 1)).Take(bookPerPage)
+                Books = await bookRepository.Books.Where(t => t.BooksGenre.LatinName == genreName).OrderByDescending(t => t.Id)
+                .Skip(bookPerPage * (page - 1)).Take(bookPerPage)
                 .Include(t => t.BooksGenre).ToListAsync(),
                 GenreName = await genreRepository.Genres.Where(t => t.LatinName == genreName).Select(t => t.Name).FirstOrDefaultAsync(),
                 GenreLatinName = genreName,
@@ -84,8 +85,7 @@ namespace BookSwap.Controllers
             if (ModelState.IsValid && bookFile != null && bookFile.ContentType == "application/pdf" && 
                 (image == null || image.ContentType == "image/jpeg")) {
 
-                BookGenre genre = await genreRepository.Genres.Where(t => t.Name == genreName)
-                    .FirstOrDefaultAsync();
+                BookGenre genre = await genreRepository.GetBookGenreByNameAsync(genreName);
 
                 book.LatinName = MakeBookLatinName(book.Name);
                 book.BookPath = await AddBookFile(bookFile, genre.LatinName);
@@ -93,10 +93,9 @@ namespace BookSwap.Controllers
                 book.BooksGenreId = genre.Id;
                 User user = await userManager.GetUserAsync(User);
                 user.UploadBooks++;
-                book.User = user;
+                book.UserWhoUploadId = user.Id;
 
-                await db.Books.AddAsync(book);
-                await db.SaveChangesAsync();
+                await bookRepository.AddBookAsync(book);
 
                 return RedirectToAction("Book", new { genreName = genreName, bookName = book.LatinName, bookId = book.Id});
             }
@@ -117,40 +116,37 @@ namespace BookSwap.Controllers
 
         public async Task<IActionResult> EditBook(int bookId)
         {
-            return View(await bookRepository.Books.FirstOrDefaultAsync(t => t.Id == bookId));
+            return View(await bookRepository.GetBookAsync(bookId));
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditBook(Book modifiedBook, IFormFile bookImage)
+        public async Task<IActionResult> EditBook(Book book, IFormFile bookImage)
         {
             User user = await userManager.GetUserAsync(User);
-            if((modifiedBook.UserWhoUploadId == user.Id || await userManager.IsInRoleAsync(user, "admin")) && ModelState.IsValid) {
-                Book book = await bookRepository.Books.Include(t => t.BooksGenre).FirstOrDefaultAsync(t => t.Id == modifiedBook.Id);
-                book.Name = modifiedBook.Name;
+            if((book.UserWhoUploadId == user.Id || await userManager.IsInRoleAsync(user, "admin")) && ModelState.IsValid) {
                 book.LatinName = MakeBookLatinName(book.Name);
-                book.Description = modifiedBook.Description;
-                book.Author = modifiedBook.Author;
 
                 if(bookImage != null)
                 {
                     DeletePastBookPhoto(book.PhotoWay);
-                    book.PhotoWay = await AddBookPhoto(bookImage, book.BooksGenre.LatinName, book.Name);
+                    string genreLatinName = await genreRepository.Genres.Where(t => t.Id == book.BooksGenreId)
+                        .Select(t => t.LatinName).FirstOrDefaultAsync();
+                    book.PhotoWay = await AddBookPhoto(bookImage, genreLatinName, book.Name);
                 }
 
-                db.Entry(book).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                await bookRepository.UpdateBookAsync(book);
                 return RedirectToAction("Book", new { genreName = book.BooksGenre.LatinName, bookName = book.LatinName, bookId = book.Id});
             }
-            return View(modifiedBook);
+            return View(book);
         }
 
         public async Task<IActionResult> DeleteBook(int bookId)
         {
-            Book book = await bookRepository.Books.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == bookId);
+            Book book = await bookRepository.GetBookAsync(bookId);
             User user = await userManager.GetUserAsync(User);
             if((book.UserWhoUploadId == user.Id || await userManager.IsInRoleAsync(user, "admin")) && ModelState.IsValid)
             {
-                book.User.UploadBooks--;
+                user.UploadBooks--;
                 DeletePastBookPhoto(book.PhotoWay);
                 db.Books.Remove(book);
                 await db.SaveChangesAsync();

@@ -17,14 +17,12 @@ namespace BookSwap.Controllers
     public class GenreController : Controller
     {
         private IGenreRepository genreRepository;
-        private ApplicationContext db;
         private IWebHostEnvironment webHostEnvironment;
         private int genrePerPage = 12;
 
-        public GenreController(IGenreRepository genreRepository, ApplicationContext db, IWebHostEnvironment webHostEnvironment)
+        public GenreController(IGenreRepository genreRepository, IWebHostEnvironment webHostEnvironment)
         {
             this.genreRepository = genreRepository;
-            this.db = db;
             this.webHostEnvironment = webHostEnvironment;
         }
 
@@ -51,21 +49,20 @@ namespace BookSwap.Controllers
 
         public async Task<IActionResult> EditGenre(int genreId)
         {
-            return View(await genreRepository.Genres.FirstOrDefaultAsync(t => t.Id == genreId));
+            return View(await genreRepository.GetBookGenreAsync(genreId));
         }
 
         [HttpPost]
         public async Task<IActionResult> EditGenre(BookGenre genre, IFormFile image)
         {
-            BookGenre unupdatedGenre = await genreRepository.Genres.FirstOrDefaultAsync(t => t.Id == genre.Id);
-            unupdatedGenre.Name = genre.Name;
             if (image != null)
             {
+                BookGenre unupdatedGenre = await genreRepository.GetBookGenreAsync(genre.Id);
                 DeleteGenrePhoto(unupdatedGenre.PhotoWay);
-                unupdatedGenre.PhotoWay = await AddGenrePhoto(image, unupdatedGenre.LatinName);
+                genre.PhotoWay = await AddGenrePhoto(image, unupdatedGenre.LatinName);
             }
 
-            await db.SaveChangesAsync();
+            await genreRepository.UpdateGenreAsync(genre);
             return RedirectToAction("GenreAdmin");
         }
 
@@ -78,8 +75,7 @@ namespace BookSwap.Controllers
         public async Task<IActionResult> AddGenre(BookGenre genre, IFormFile image)
         {
             genre.PhotoWay = await AddGenrePhoto(image, genre.LatinName);
-            await db.BookGenres.AddAsync(genre);
-            await db.SaveChangesAsync();
+            await genreRepository.AddGenreAsync(genre);
             Directory.CreateDirectory(webHostEnvironment.WebRootPath + "/img/BooksPhotos/" + genre.LatinName);
 
             return RedirectToAction("GenreAdmin");
@@ -87,9 +83,9 @@ namespace BookSwap.Controllers
 
         public async Task<IActionResult> DeleteGenre(int genreId)
         {
-            db.BookGenres.Remove(new BookGenre { Id = genreId });
-            DeleteGenrePhoto(await genreRepository.Genres.Where(t => t.Id == genreId).Select(t => t.PhotoWay).FirstOrDefaultAsync());
-            await db.SaveChangesAsync();
+            string genrePhotoway = await genreRepository.Genres.Where(t => t.Id == genreId).Select(t => t.PhotoWay).FirstOrDefaultAsync();
+            DeleteGenrePhoto(genrePhotoway);
+            await genreRepository.DeleteGenreAsync(new BookGenre { Id = genreId });
 
             return RedirectToAction("GenreAdmin");
         }

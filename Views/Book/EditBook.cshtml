@@ -4,6 +4,7 @@
     <form asp-action="EditBook" asp-controller="Book" enctype="multipart/form-data">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="UserWhoUploadId" />
+        <input type="hidden" asp-for="BooksGenreId" />
         <div class="edit-book-for-flex">
             <div class="edit-book__img"><img id="image" src="@Model.PhotoWay" alt=""></div>
             <div class="edit-book-right-section">
